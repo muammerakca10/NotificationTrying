@@ -47,8 +47,10 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         dateComponents.hour = 10
         dateComponents.minute = 30
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
         center.add(request)
     }
     
@@ -64,6 +66,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
         let userInfo = response.notification.request.content.userInfo
         
         if let customData = userInfo["customData"] as? String {
@@ -79,7 +82,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             default : break
             }
         }
-        completionHandler()
+        //completionHandler()
     }
     
     
